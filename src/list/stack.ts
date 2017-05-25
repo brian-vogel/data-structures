@@ -1,49 +1,37 @@
-export class stack<T> {
+import { list } from './shared/list';
+import { list_node as node } from './shared/list-node';
 
-  private head: node<T>;
-  private _size: number;
+export class stack<T> extends list<T> {
 
-  constructor(){
-    this.head = null;
-    this._size = 0;
+  constructor(list?: stack<T>) {
+    super(list);
   };
 
-  public isEmpty(): boolean {
-    return this._size === 0;
-  }
-
-  public get size(): number {
-    return this._size;
-  }
-
   public peek(): T {
-    if(!this.head) {
+    if (this.head == null) {
       return null;
     }
-    return this.head.item;
+    return this.head.data;
   }
 
-  public push(item: T) {
-    let newHead = new node<T>()
-    newHead.item = item;
+  public push(data: T) {
+    let newHead = new node<T>(data);
+
     newHead.next = this.head;
     this.head = newHead;
+
     this._size++;
   }
 
   public pop(): T {
-    if(!this.head) {
+    if (this.head == null) {
       return null;
     }
 
-    let item = this.head.item;
+    let data = this.head.data;
     this.head = this.head.next;
-    this._size--;
-    return item;
-  }
-}
 
-class node<T> {
-  item: T;
-  next: node<T>;
+    this._size--;
+    return data;
+  }
 }

@@ -1,35 +1,29 @@
-export class queue<T> {
+import { list } from './shared/list';
+import { list_node as node } from './shared/list-node';
 
-  private head: node<T>;
+export class queue<T> extends list<T> {
   private tail: node<T>;
-  private _size: number;
 
-  constructor() {
-    this.head = null;
-    this.tail = null;
-    this._size = 0;
+  constructor(list?: queue<T>) {
+    super(list);
+    if(this.head == null) {
+      this.tail = null;
+      return;
+    }
+    this.tail = this.findNode(this._size-1);
   }
 
-  public isEmpty(): boolean {
-    return this._size === 0;
-  }
+  public enqueue(data: T) {
+    let newTail = new node<T>(data);
 
-  public get size(): number {
-    return this._size;
-  }
-
-  public enqueue(item: T) {
-    let newTail = new node<T>()
-    newTail.item = item;
-    newTail.next = null;
-
-    if (!this.tail) {
+    if (this.tail == null) {
       this.head = newTail;
       this.tail = newTail;
     } else {
       this.tail.next = newTail;
       this.tail = newTail;
     }
+
     this._size++;
   }
 
@@ -38,18 +32,13 @@ export class queue<T> {
       return null;
     }
 
-    let item = this.head.item;
+    let data = this.head.data;
     this.head = this.head.next;
-    if (!this.head) {
+    if (this.head == null) {
       this.tail = null;
     }
 
     this._size--;
-    return item;
+    return data;
   }
-}
-
-class node<T> {
-  item: T;
-  next: node<T>;
 }
