@@ -5,13 +5,8 @@ export abstract class list<T> {
   protected _size: number;
 
   constructor(list?: list<T>) {
-    this.head = null;
     this._size = 0;
 
-    if (list == null || list.head == null) {
-      this.head = null;
-      return;
-    }
     this.copy(list);
   }
 
@@ -23,20 +18,21 @@ export abstract class list<T> {
     return this._size === 0;
   }
 
-  public copy(list: list<T>): node<T> {
-    this.head = list.head;
+  public copy(list: list<T>) {
+    if (list == null || list.head == null) {
+      this.head = null;
+      return;
+    }
+    this.head = new node(list.head.data);
 
     let listNode = list.head;
     let thisNode = this.head;
-
-    while (listNode.next != null) {
-      thisNode.next = listNode.next;
+    while (listNode.next !== null) {
+      thisNode.next = new node(listNode.next.data);
       listNode = listNode.next;
+      thisNode = thisNode.next;
     }
-    thisNode.next = null;
-
     this._size = list.size;
-    return thisNode;
   }
 
   protected findNode(index: number): node<T> {
