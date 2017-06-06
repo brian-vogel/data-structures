@@ -4,7 +4,7 @@ import { list_node as node } from './shared/list-node';
 export class queue<T> extends list<T> {
   private tail: node<T>;
 
-  constructor(list?: queue<T>) {
+  constructor(list?: list<T>) {
     super(list);
     if(this.head == null) {
       this.tail = null;
@@ -28,7 +28,7 @@ export class queue<T> extends list<T> {
   }
 
   public dequeue(): T {
-    if (!this.head) {
+    if (this.head == null) {
       return null;
     }
 

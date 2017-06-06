@@ -3,7 +3,7 @@ import { list_node as node } from './shared/list-node';
 
 export class linked_list<T> extends list<T> {
 
-  constructor(list?: linked_list<T>) {
+  constructor(list?: list<T>) {
     super(list);
   }
 

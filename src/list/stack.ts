@@ -3,7 +3,7 @@ import { list_node as node } from './shared/list-node';
 
 export class stack<T> extends list<T> {
 
-  constructor(list?: stack<T>) {
+  constructor(list?: list<T>) {
     super(list);
   };
 
