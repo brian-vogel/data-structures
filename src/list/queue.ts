@@ -13,8 +13,8 @@ export class queue<T> extends list<T> {
     this.tail = this.findNode(this._size-1);
   }
 
-  public enqueue(data: T) {
-    let newTail = new node<T>(data);
+  public enqueue(value: T) {
+    let newTail = new node<T>(value);
 
     if (this.tail == null) {
       this.head = newTail;
@@ -32,13 +32,13 @@ export class queue<T> extends list<T> {
       return null;
     }
 
-    let data = this.head.data;
+    let value = this.head.value;
     this.head = this.head.next;
     if (this.head == null) {
       this.tail = null;
     }
 
     this._size--;
-    return data;
+    return value;
   }
 }

@@ -7,8 +7,8 @@ export class linked_list<T> extends list<T> {
     super(list);
   }
 
-  public insertFront(data: T) {
-    let newNode = new node(data);
+  public insertFront(value: T) {
+    let newNode = new node(value);
 
     newNode.next = this.head;
     this.head = newNode;
@@ -16,17 +16,17 @@ export class linked_list<T> extends list<T> {
     this._size++;
   }
 
-  public insertAt(data: T, index: number) {
+  public insertAt(value: T, index: number) {
     if (index === 0) {
-      this.insertFront(data);
+      this.insertFront(value);
       return;
     }
     if (index === this._size) {
-      this.insertBack(data);
+      this.insertBack(value);
       return;
     }
 
-    let newNode = new node(data);
+    let newNode = new node(value);
     let prevNode = this.findNode(index - 1);
 
     newNode.next = prevNode.next;
@@ -34,23 +34,23 @@ export class linked_list<T> extends list<T> {
     this._size++;
   }
 
-  public insertBack(data: T) {
-    let newNode = new node(data);
+  public insertBack(value: T) {
+    let newNode = new node(value);
 
     this.findNode(this._size - 1).next = newNode;
     this._size++;
   }
 
   public findFront(): T {
-    return this.findNode(0).data;
+    return this.findNode(0).value;
   }
 
   public findAt(index: number): T {
-    return this.findNode(index).data;
+    return this.findNode(index).value;
   }
 
   public findBack(): T {
-    return this.findNode(this._size - 1).data;
+    return this.findNode(this._size - 1).value;
   }
 
   public removeFront(): T {
@@ -58,7 +58,7 @@ export class linked_list<T> extends list<T> {
     this.head = currentNode.next;
 
     this._size--;
-    return currentNode.data;
+    return currentNode.value;
   }
 
   public removeAt(index: number): T {
@@ -76,7 +76,7 @@ export class linked_list<T> extends list<T> {
     prevNode.next = prevNode.next.next;
 
     this._size--;
-    return currentNode.data;
+    return currentNode.value;
   }
 
   public removeBack(): T {
@@ -85,6 +85,6 @@ export class linked_list<T> extends list<T> {
     prevNode.next = null;
 
     this._size--;
-    return currentNode.next.data;
+    return currentNode.next.value;
   }
 }

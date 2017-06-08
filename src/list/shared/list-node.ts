@@ -1,9 +1,9 @@
 export class list_node<T> {
-  public data: T;
+  public value: T;
   public next: list_node<T>;
 
-  constructor(data: T = null) {
-    this.data = data;
+  constructor(value: T = null) {
+    this.value = value;
     this.next = null;
   }
 

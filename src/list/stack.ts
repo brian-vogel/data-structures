@@ -11,11 +11,11 @@ export class stack<T> extends list<T> {
     if (this.head == null) {
       return null;
     }
-    return this.head.data;
+    return this.head.value;
   }
 
-  public push(data: T) {
-    let newHead = new node<T>(data);
+  public push(value: T) {
+    let newHead = new node<T>(value);
 
     newHead.next = this.head;
     this.head = newHead;
@@ -28,10 +28,10 @@ export class stack<T> extends list<T> {
       return null;
     }
 
-    let data = this.head.data;
+    let value = this.head.value;
     this.head = this.head.next;
 
     this._size--;
-    return data;
+    return value;
   }
 }
