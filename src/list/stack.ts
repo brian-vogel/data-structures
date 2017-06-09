@@ -1,7 +1,7 @@
 import { list } from './shared/list';
 import { list_node as node } from './shared/list-node';
 
-export class stack<T> extends list<T> {
+export class Stack<T> extends list<T> {
 
   constructor(list?: list<T>) {
     super(list);
