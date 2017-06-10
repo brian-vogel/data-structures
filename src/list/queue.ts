@@ -1,10 +1,10 @@
-import { list } from './shared/list';
+import { List } from './shared/list';
 import { list_node as node } from './shared/list-node';
 
-export class queue<T> extends list<T> {
+export class Queue<T> extends List<T> {
   private tail: node<T>;
 
-  constructor(list?: list<T>) {
+  constructor(list?: List<T>) {
     super(list);
     if(this.head == null) {
       this.tail = null;

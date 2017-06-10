@@ -6,8 +6,8 @@ describe('Stack', () => {
   let stack: Stack<any>;
   beforeEach(() => {
     stack = new Stack();
-  })
-
+  });
+  
 
   it('should initialize', () => {
     expect(stack).exist;
@@ -66,5 +66,4 @@ describe('Stack', () => {
     expect(stack.pop()).equal('item1');
     expect(stack.size).equal(0);
   });
-
 });

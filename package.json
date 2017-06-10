@@ -1,7 +1,7 @@
 {
   "name": "data-structures",
   "version": "1.0.0",
-  "description": "",
+  "description": "A library to practice writing data structures",
   "main": "index.js",
   "scripts": {
     "start": "npm run build:live",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/brian-vogel/data-structures.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Brian Vogel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brian-vogel/data-structures/issues"
@@ -26,6 +26,7 @@
     "chai": "^4.0.2",
     "mocha": "^3.4.2",
     "ts-node": "^3.0.6",
-    "typescript": "^2.3.4"
+    "typescript": "^2.3.4",
+    "typings": "^2.1.1"
   }
 }

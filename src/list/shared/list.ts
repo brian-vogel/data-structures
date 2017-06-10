@@ -1,12 +1,13 @@
 import { list_node as node } from './list-node';
 
-export class list<T> {
+export class List<T> {
   protected head: node<T>;
   protected _size: number;
 
-  constructor(list?: list<T>) {
+  constructor(list?: List<T>) {
     this._size = 0;
 
+    // todo: initialize with array
     this.copy_nodes(list);
   }
 
@@ -18,8 +19,9 @@ export class list<T> {
     return this._size === 0;
   }
 
-  public copy(): list<T> {
-    return new list(this);
+  // todo: copy to array
+  public copy(): List<T> {
+    return new List(this);
   }
 
   public forEach<Q>(callback: (value: T) => Q) {
@@ -30,13 +32,13 @@ export class list<T> {
     }
   }
 
-  public map<Q>(callback: (value: T) => Q): list<Q> {
+  public map<Q>(callback: (value: T) => Q): List<Q> {
     let temp = this.head;
-    let newList = new list<Q>();
-    // newList.head = new node(callback(temp.value));
+    let newList = new List<Q>();
+    newList.head = new node(callback(temp.value));
     let newNode = newList.head;
-    while (temp != null) {
-      newNode = new node(callback(temp.value));
+    while (temp.next != null) {
+      newNode.next = new node(callback(temp.value));
       newNode = newNode.next;
       temp = temp.next;
     }
@@ -44,9 +46,9 @@ export class list<T> {
     return newList;
   }
 
-  public filter(callback: (value: T) => boolean): list<T> {
+  public filter(callback: (value: T) => boolean): List<T> {
     let temp = this.head;
-    let newList = new list<T>();
+    let newList = new List<T>();
     newList.head = new node(temp.value);
     let newNode = newList.head;
     while (temp.next != null) {
@@ -60,7 +62,7 @@ export class list<T> {
     return newList;
   }
 
-  public reduce<Q>(callback: (value: T, accumulator: Q) => Q, accumulator: any): Q {
+  public reduce(callback: (value: T, accumulator: any) => any, accumulator?: any): any {
     let temp = this.head;
     if(accumulator == null) {
       accumulator = temp.value;
@@ -68,11 +70,12 @@ export class list<T> {
     }
     while(temp != null) {
       accumulator = callback(temp.value, accumulator);
+      temp = temp.next;
     }
     return accumulator;
   }
 
-  private copy_nodes(list: list<T>) {
+  private copy_nodes(list: List<T>) {
     if (list == null || list.head == null) {
       this.head = null;
       return;
